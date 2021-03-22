@@ -37,7 +37,7 @@ public class CUIZheTestTask3 {
 
     }
 
-    /**
+     /**
      *Rate method Test case2
      * Partition Tested: hourlyNormalRate=0 && hourlyNormalRate= hourlyReducedRate
      *expected an instance of Rate
@@ -1034,7 +1034,7 @@ public class CUIZheTestTask3 {
         Assert.assertNotNull(testRate);
 
     }
-    /**
+     /**
      *calculate method test case1
      *Partition Tested: startHour < 0
      *expected to throw IllegalArgumentException
@@ -1064,7 +1064,7 @@ public class CUIZheTestTask3 {
         BigDecimal cost = testRate.calculate(period);
     }
 
-    /**
+     /**
      *calculate method test case2
      *Partition Tested: startHour = 0
      *expected to output the cost: 4
@@ -1096,7 +1096,7 @@ public class CUIZheTestTask3 {
         Assert.assertEquals(new BigDecimal(4), cost);
     }
 
-    /**
+     /**
      *calculate method test case3
      *Partition Tested: 0 <= startHour < 24
      *expected to output the cost: 5
@@ -1127,7 +1127,7 @@ public class CUIZheTestTask3 {
 
     }
 
-    /**
+     /**
      *calculate method test case4
      *Partition Tested: startHour > 24
      *expected to throw IllegalArgumentException
@@ -1159,7 +1159,7 @@ public class CUIZheTestTask3 {
     }
 
 
-    /**
+     /**
      *calculate method test case5
      *Partition Tested: endHour < 0
      *expected to throw IllegalArgumentException
@@ -1188,7 +1188,7 @@ public class CUIZheTestTask3 {
         BigDecimal cost = testRate.calculate(period);
     }
 
-    /**
+     /**
      *calculate method test case6
      *Partition Tested: startHour=endHour && endHour = 0
      *expected to throw IllegalArgumentException
@@ -1217,7 +1217,7 @@ public class CUIZheTestTask3 {
         BigDecimal cost = testRate.calculate(period);
     }
 
-    /**
+/**
      *calculate method test case7
      *Partition Tested: 0 <= endHour < 24
      *expected to output the cost: 15
@@ -1248,7 +1248,7 @@ public class CUIZheTestTask3 {
         Assert.assertEquals(new BigDecimal(20), cost);
     }
 
-    /**
+/**
      *calculate method test case8
      *Partition Tested: endHour > 24
      *expected to throw IllegalArgumentException
@@ -1279,7 +1279,7 @@ public class CUIZheTestTask3 {
 
     }
 
-    /**
+     /**
      *calculate method test case9
      *Partition Tested: endHour = 24
      *expected to output the cost: 4
@@ -1342,7 +1342,7 @@ public class CUIZheTestTask3 {
 
     }
 
-    /**
+     /**
      calculate method test case11
      *Partition Tested:startHour = endHour
      *expected to throw IllegalArgumentException
@@ -1403,192 +1403,6 @@ public class CUIZheTestTask3 {
         BigDecimal cost = testRate.calculate(period);
         Assert.assertEquals(new BigDecimal(0), cost);
     }
-
-    /**
-     *calculate method test case13
-     *Partition Tested:
-     * VISITOR: first 8.00 is free, 50% reduction above that
-     *expected to output the cost: 0.00
-     */
-
-    @Test
-    public void testcalculate13() throws IllegalArgumentException
-    {
-        //given
-        int startHour = 10;
-        int endHour = 12;
-        CarParkKind carParkKind = CarParkKind.VISITOR;
-        BigDecimal hourlyNormalRate = new BigDecimal("4.00");
-        BigDecimal hourlyReducedRate = new BigDecimal("2.00");
-        Period normalPeriod = new Period(10,16);
-        Period reducedPeriod1 = new Period(3,4);
-        Period reducedPeriod2 = new Period(19,22);
-        ArrayList<Period> reducedPeriods = new ArrayList<Period>();
-        ArrayList<Period> normalPeriods = new ArrayList<Period>();
-        normalPeriods.add(normalPeriod);
-        reducedPeriods.add(reducedPeriod1);
-        reducedPeriods.add(reducedPeriod2);
-
-        Rate testRate = new Rate(carParkKind, hourlyNormalRate, hourlyReducedRate, reducedPeriods, normalPeriods);
-        Period period = new Period(startHour, endHour);
-        //when
-        BigDecimal cost = testRate.calculate(period);
-        Assert.assertEquals(new BigDecimal("0.00"), cost);
-    }
-    /**
-     *calculate method test case14
-     *Partition Tested:
-     * VISITOR: first 8.00 is free, 50% reduction above that
-     *expected to output the cost: 0.00
-     */
-
-    @Test
-    public void testcalculate14() throws IllegalArgumentException
-    {
-        //given
-        int startHour = 10;
-        int endHour = 15;
-        CarParkKind carParkKind = CarParkKind.VISITOR;
-        BigDecimal hourlyNormalRate = new BigDecimal("4.00");
-        BigDecimal hourlyReducedRate = new BigDecimal("2.00");
-        Period normalPeriod = new Period(10,16);
-        Period reducedPeriod1 = new Period(3,4);
-        Period reducedPeriod2 = new Period(19,22);
-        ArrayList<Period> reducedPeriods = new ArrayList<Period>();
-        ArrayList<Period> normalPeriods = new ArrayList<Period>();
-        normalPeriods.add(normalPeriod);
-        reducedPeriods.add(reducedPeriod1);
-        reducedPeriods.add(reducedPeriod2);
-
-        Rate testRate = new Rate(carParkKind, hourlyNormalRate, hourlyReducedRate, reducedPeriods, normalPeriods);
-        Period period = new Period(startHour, endHour);
-        //when
-        BigDecimal cost = testRate.calculate(period);
-        Assert.assertEquals(new BigDecimal("6.00"), cost);
-    }
-    /**
-     *calculate method test case15
-     *Partition Tested:
-     * MANAGEMENT: minimum payable is 3.00
-     *expected to output the cost: 0.00
-     */
-
-    @Test
-    public void testcalculate15() throws IllegalArgumentException
-    {
-        //given
-        int startHour = 19;
-        int endHour = 20;
-        CarParkKind carParkKind = CarParkKind.MANAGEMENT;
-        BigDecimal hourlyNormalRate = new BigDecimal("4.00");
-        BigDecimal hourlyReducedRate = new BigDecimal("2.00");
-        Period normalPeriod = new Period(10,16);
-        Period reducedPeriod1 = new Period(3,4);
-        Period reducedPeriod2 = new Period(19,22);
-        ArrayList<Period> reducedPeriods = new ArrayList<Period>();
-        ArrayList<Period> normalPeriods = new ArrayList<Period>();
-        normalPeriods.add(normalPeriod);
-        reducedPeriods.add(reducedPeriod1);
-        reducedPeriods.add(reducedPeriod2);
-
-        Rate testRate = new Rate(carParkKind, hourlyNormalRate, hourlyReducedRate, reducedPeriods, normalPeriods);
-        Period period = new Period(startHour, endHour);
-        //when
-        BigDecimal cost = testRate.calculate(period);
-        Assert.assertEquals(new BigDecimal("3.00"), cost);
-    }
-    /**
-     *calculate method test case16
-     *Partition Tested:
-     * STUDENT: 25% reduction on any amount above 5.50
-     *expected to output the cost: 5.50
-     */
-
-    @Test
-    public void testcalculate16() throws IllegalArgumentException
-    {
-        //given
-        int startHour = 10;
-        int endHour = 11;
-        CarParkKind carParkKind = CarParkKind.STUDENT;
-        BigDecimal hourlyNormalRate = new BigDecimal("5.50");
-        BigDecimal hourlyReducedRate = new BigDecimal("2.00");
-        Period normalPeriod = new Period(10,16);
-        Period reducedPeriod1 = new Period(3,4);
-        Period reducedPeriod2 = new Period(19,22);
-        ArrayList<Period> reducedPeriods = new ArrayList<Period>();
-        ArrayList<Period> normalPeriods = new ArrayList<Period>();
-        normalPeriods.add(normalPeriod);
-        reducedPeriods.add(reducedPeriod1);
-        reducedPeriods.add(reducedPeriod2);
-
-        Rate testRate = new Rate(carParkKind, hourlyNormalRate, hourlyReducedRate, reducedPeriods, normalPeriods);
-        Period period = new Period(startHour, endHour);
-        //when
-        BigDecimal cost = testRate.calculate(period);
-        Assert.assertEquals(new BigDecimal("5.50"), cost);
-    }
-    /**
-     *calculate method test case17
-     *Partition Tested:
-     * STUDENT: 25% reduction on any amount above 5.50
-     *expected to output the cost: 5.50
-     */
-
-    @Test
-    public void testcalculate17() throws IllegalArgumentException
-    {
-        //given
-        int startHour = 10;
-        int endHour = 13;
-        CarParkKind carParkKind = CarParkKind.STUDENT;
-        BigDecimal hourlyNormalRate = new BigDecimal("5.50");
-        BigDecimal hourlyReducedRate = new BigDecimal("2.00");
-        Period normalPeriod = new Period(10,16);
-        Period reducedPeriod1 = new Period(3,4);
-        Period reducedPeriod2 = new Period(19,22);
-        ArrayList<Period> reducedPeriods = new ArrayList<Period>();
-        ArrayList<Period> normalPeriods = new ArrayList<Period>();
-        normalPeriods.add(normalPeriod);
-        reducedPeriods.add(reducedPeriod1);
-        reducedPeriods.add(reducedPeriod2);
-
-        Rate testRate = new Rate(carParkKind, hourlyNormalRate, hourlyReducedRate, reducedPeriods, normalPeriods);
-        Period period = new Period(startHour, endHour);
-        //when
-        BigDecimal cost = testRate.calculate(period);
-        Assert.assertEquals(new BigDecimal("8.25"), cost);
-    }
-    /**
-     *calculate method test case18
-     *Partition Tested:
-     * STAFF: maximum payable is 16.00 per day
-     *expected to output the cost: 16.00
-     */
-
-    @Test
-    public void testcalculate18() throws IllegalArgumentException
-    {
-        //given
-        int startHour = 10;
-        int endHour = 16;
-        CarParkKind carParkKind = CarParkKind.STAFF;
-        BigDecimal hourlyNormalRate = new BigDecimal("4.00");
-        BigDecimal hourlyReducedRate = new BigDecimal("2.00");
-        Period normalPeriod = new Period(10,16);
-        Period reducedPeriod1 = new Period(3,4);
-        Period reducedPeriod2 = new Period(19,22);
-        ArrayList<Period> reducedPeriods = new ArrayList<Period>();
-        ArrayList<Period> normalPeriods = new ArrayList<Period>();
-        normalPeriods.add(normalPeriod);
-        reducedPeriods.add(reducedPeriod1);
-        reducedPeriods.add(reducedPeriod2);
-
-        Rate testRate = new Rate(carParkKind, hourlyNormalRate, hourlyReducedRate, reducedPeriods, normalPeriods);
-        Period period = new Period(startHour, endHour);
-        //when
-        BigDecimal cost = testRate.calculate(period);
-        Assert.assertEquals(new BigDecimal("16.00"), cost);
-    }
 }
+
 

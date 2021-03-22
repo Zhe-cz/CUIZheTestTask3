@@ -1,13 +1,8 @@
 package cm;
 
-import sun.reflect.generics.visitor.Visitor;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-
-import static cm.CarParkKind.*;
-
 
 public class Rate {
     private CarParkKind kind;
@@ -15,7 +10,6 @@ public class Rate {
     private BigDecimal hourlyReducedRate;
     private ArrayList<Period> reduced = new ArrayList<>();
     private ArrayList<Period> normal = new ArrayList<>();
-    ReductionRates reduce;
 
     public Rate(CarParkKind kind, BigDecimal normalRate, BigDecimal reducedRate, ArrayList<Period> reducedPeriods
             , ArrayList<Period> normalPeriods) {
@@ -28,7 +22,7 @@ public class Rate {
         if (normalRate.compareTo(BigDecimal.ZERO) < 0 || reducedRate.compareTo(BigDecimal.ZERO) < 0) {
             throw new IllegalArgumentException("A rate cannot be negative");
         }
-        if (normalRate.compareTo(reducedRate) <= 0) {
+        if (normalRate.compareTo(reducedRate) < 0) {
             throw new IllegalArgumentException("The normal rate cannot be less or equal to the reduced rate");
         }
         if (!isValidPeriods(reducedPeriods) || !isValidPeriods(normalPeriods)) {
@@ -97,55 +91,8 @@ public class Rate {
     public BigDecimal calculate(Period periodStay) {
         int normalRateHours = periodStay.occurences(normal);
         int reducedRateHours = periodStay.occurences(reduced);
-        //return (this.hourlyNormalRate.multiply(BigDecimal.valueOf(normalRateHours))).add(
-                //this.hourlyReducedRate.multiply(BigDecimal.valueOf(reducedRateHours)));
-        int roundingValue = 2;
-
-        BigDecimal cost = (this.hourlyNormalRate.multiply(BigDecimal.valueOf(normalRateHours))).add(
+        return (this.hourlyNormalRate.multiply(BigDecimal.valueOf(normalRateHours))).add(
                 this.hourlyReducedRate.multiply(BigDecimal.valueOf(reducedRateHours)));
-
-//        switch (this.kind){
-//            case VISITOR :
-//                reduce = new VisitorRate();
-//                cost =  reduce.reduction(cost).setScale(roundingValue);
-//                break;
-//            case STUDENT:
-//                reduce = new StudentRate();
-//                cost = reduce.reduction(cost).setScale(roundingValue);
-//                break;
-//            case STAFF:
-//                reduce = new StaffRate();
-//                cost = reduce.reduction(cost).setScale(roundingValue);
-//                break;
-//            case MANAGEMENT:
-//                reduce = new ManagementRate();
-//                cost = reduce.reduction(cost).setScale(roundingValue);
-//                break;
-//        }
-        if(kind == VISITOR)
-        {
-            reduce = new VisitorRate();
-            cost =  reduce.reduction(cost).setScale(roundingValue);
-        }
-        if(kind == STUDENT)
-        {
-            reduce = new StudentRate();
-            cost = reduce.reduction(cost).setScale(roundingValue);
-        }
-
-        if(kind == STAFF)
-        {
-            reduce = new StaffRate();
-            cost = reduce.reduction(cost).setScale(roundingValue);
-        }
-        if(kind ==MANAGEMENT)
-        {
-            reduce = new ManagementRate();
-            cost = reduce.reduction(cost).setScale(roundingValue);
-        }
-
-        return cost;
-
     }
 
 }
