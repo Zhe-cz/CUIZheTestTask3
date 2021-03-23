@@ -1047,8 +1047,8 @@ public class CUIZheTestTask3 {
         int startHour = -1;
         int endHour = 11;
         CarParkKind carParkKind = CarParkKind.STAFF;
-        BigDecimal hourlyNormalRate = new BigDecimal(5);
-        BigDecimal hourlyReducedRate = new BigDecimal(2);
+        BigDecimal hourlyNormalRate = new BigDecimal("5");
+        BigDecimal hourlyReducedRate = new BigDecimal("2");
         Period normalPeriod = new Period(10,15);
         Period reducedPeriod1 = new Period(5,8);
         Period reducedPeriod2 = new Period(18,22);
@@ -1078,8 +1078,8 @@ public class CUIZheTestTask3 {
         int endHour = 7;
 
         CarParkKind carParkKind = CarParkKind.STAFF;
-        BigDecimal hourlyNormalRate = new BigDecimal(5);
-        BigDecimal hourlyReducedRate = new BigDecimal(2);
+        BigDecimal hourlyNormalRate = new BigDecimal("5");
+        BigDecimal hourlyReducedRate = new BigDecimal("2");
         Period normalPeriod = new Period(10,15);
         Period reducedPeriod1 = new Period(5,8);
         Period reducedPeriod2 = new Period(18,22);
@@ -1109,8 +1109,8 @@ public class CUIZheTestTask3 {
         int startHour = 8;
         int endHour = 11;
         CarParkKind carParkKind = CarParkKind.STAFF;
-        BigDecimal hourlyNormalRate = new BigDecimal(5);
-        BigDecimal hourlyReducedRate = new BigDecimal(2);
+        BigDecimal hourlyNormalRate = new BigDecimal("5");
+        BigDecimal hourlyReducedRate = new BigDecimal("2");
         Period normalPeriod = new Period(10,15);
         Period reducedPeriod1 = new Period(5,8);
         Period reducedPeriod2 = new Period(18,22);
@@ -1123,7 +1123,7 @@ public class CUIZheTestTask3 {
         Period period = new Period(startHour, endHour);
         //when
         BigDecimal cost = testRate.calculate(period);
-        Assert.assertEquals(new BigDecimal(5), cost);
+        Assert.assertEquals(new BigDecimal("5.00"), cost);
 
     }
 
@@ -1140,8 +1140,8 @@ public class CUIZheTestTask3 {
         int startHour = 26;
         int endHour = 22;
         CarParkKind carParkKind = CarParkKind.STAFF;
-        BigDecimal hourlyNormalRate = new BigDecimal(5);
-        BigDecimal hourlyReducedRate = new BigDecimal(2);
+        BigDecimal hourlyNormalRate = new BigDecimal("5");
+        BigDecimal hourlyReducedRate = new BigDecimal("2");
         Period normalPeriod = new Period(10,15);
         Period reducedPeriod1 = new Period(5,8);
         Period reducedPeriod2 = new Period(18,22);
@@ -1171,8 +1171,8 @@ public class CUIZheTestTask3 {
         int startHour = 2;
         int endHour = -1;
         CarParkKind carParkKind = CarParkKind.STAFF;
-        BigDecimal hourlyNormalRate = new BigDecimal(5);
-        BigDecimal hourlyReducedRate = new BigDecimal(2);
+        BigDecimal hourlyNormalRate = new BigDecimal("5");
+        BigDecimal hourlyReducedRate = new BigDecimal("2");
         Period normalPeriod = new Period(10,15);
         Period reducedPeriod1 = new Period(5,8);
         Period reducedPeriod2 = new Period(18,22);
@@ -1200,8 +1200,8 @@ public class CUIZheTestTask3 {
         int startHour = 0;
         int endHour = 0;
         CarParkKind carParkKind = CarParkKind.STAFF;
-        BigDecimal hourlyNormalRate = new BigDecimal(5);
-        BigDecimal hourlyReducedRate = new BigDecimal(2);
+        BigDecimal hourlyNormalRate = new BigDecimal("5");
+        BigDecimal hourlyReducedRate = new BigDecimal("2");
         Period normalPeriod = new Period(10,15);
         Period reducedPeriod1 = new Period(5,8);
         Period reducedPeriod2 = new Period(18,22);
@@ -1230,8 +1230,8 @@ public class CUIZheTestTask3 {
         int startHour = 11;
         int endHour = 16;
         CarParkKind carParkKind = CarParkKind.STAFF;
-        BigDecimal hourlyNormalRate = new BigDecimal(5);
-        BigDecimal hourlyReducedRate = new BigDecimal(2);
+        BigDecimal hourlyNormalRate = new BigDecimal("5");
+        BigDecimal hourlyReducedRate = new BigDecimal("2");
         Period normalPeriod = new Period(10,15);
         Period reducedPeriod1 = new Period(5,8);
         Period reducedPeriod2 = new Period(18,22);
@@ -1245,7 +1245,7 @@ public class CUIZheTestTask3 {
         Period period = new Period(startHour, endHour);
         //when
         BigDecimal cost = testRate.calculate(period);
-        Assert.assertEquals(new BigDecimal(20), cost);
+        Assert.assertEquals(new BigDecimal("16.00"), cost);
     }
 
 /**
