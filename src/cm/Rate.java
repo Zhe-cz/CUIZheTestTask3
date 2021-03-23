@@ -100,11 +100,26 @@ public class Rate {
         BigDecimal cost = (this.hourlyNormalRate.multiply(BigDecimal.valueOf(normalRateHours))).add(
                 this.hourlyReducedRate.multiply(BigDecimal.valueOf(reducedRateHours)));
 
-
+        if(kind == VISITOR)
+        {
+            reduce = new VisitorRate();
+            cost =  reduce.reduction(cost).setScale(roundingValue);
+        }
+        if(kind == STUDENT)
+        {
+            reduce = new StudentRate();
+            cost = reduce.reduction(cost).setScale(roundingValue);
+        }
 
         if(kind == STAFF)
         {
             reduce = new StaffRate();
+            cost = reduce.reduction(cost).setScale(roundingValue);
+        }
+
+        if(kind ==MANAGEMENT)
+        {
+            reduce = new ManagementRate();
             cost = reduce.reduction(cost).setScale(roundingValue);
         }
 

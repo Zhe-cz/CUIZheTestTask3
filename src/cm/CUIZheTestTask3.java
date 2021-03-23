@@ -1093,7 +1093,7 @@ public class CUIZheTestTask3 {
         Period period = new Period(startHour, endHour);
         //when
         BigDecimal cost = testRate.calculate(period);
-        Assert.assertEquals(new BigDecimal(4), cost);
+        Assert.assertEquals(new BigDecimal("4.00"), cost);
     }
 
      /**
@@ -1307,7 +1307,7 @@ public class CUIZheTestTask3 {
         Period period = new Period(startHour, endHour);
         //when
         BigDecimal cost = testRate.calculate(period);
-        Assert.assertEquals(new BigDecimal("4"), cost);
+        Assert.assertEquals(new BigDecimal("4.00"), cost);
     }
 
     /**
